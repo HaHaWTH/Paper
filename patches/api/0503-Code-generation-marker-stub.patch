@@ -24,6 +24,24 @@ index 68284abd5c4358617ee7766101e942f81a001e2c..df80f2988b08a9cfbae73e84ce77fe9a
  
      private static DataComponentType.NonValued unvalued(final String name) {
          return (DataComponentType.NonValued) requireNonNull(Registry.DATA_COMPONENT_TYPE.get(NamespacedKey.minecraft(name)), name + " unvalued data component type couldn't be found, this is a bug.");
+diff --git a/src/main/java/io/papermc/paper/datacomponent/item/consumable/ItemUseAnimation.java b/src/main/java/io/papermc/paper/datacomponent/item/consumable/ItemUseAnimation.java
+index 8cd6dbe4ea5ee3270b9428a9c29cbd88823d9f6c..0be18909f7dc4943d2ec8ea4c66be84ae4dc56fe 100644
+--- a/src/main/java/io/papermc/paper/datacomponent/item/consumable/ItemUseAnimation.java
++++ b/src/main/java/io/papermc/paper/datacomponent/item/consumable/ItemUseAnimation.java
+@@ -4,6 +4,7 @@ package io.papermc.paper.datacomponent.item.consumable;
+  * Represents the hand animation that is used when a player is consuming this item.
+  */
+ public enum ItemUseAnimation {
++    // Paper start - Generated/ItemUseAnimation
+     NONE,
+     EAT,
+     DRINK,
+@@ -14,4 +15,5 @@ public enum ItemUseAnimation {
+     SPYGLASS,
+     TOOT_HORN,
+     BRUSH
++    // Paper end - Generated/ItemUseAnimation
+ }
 diff --git a/src/main/java/io/papermc/paper/registry/event/RegistryEvents.java b/src/main/java/io/papermc/paper/registry/event/RegistryEvents.java
 index 40deffbd0930508bb04e9aedfd62ad2144855198..22b247fbb79135e1091bd7d62f721781edec6e2a 100644
 --- a/src/main/java/io/papermc/paper/registry/event/RegistryEvents.java

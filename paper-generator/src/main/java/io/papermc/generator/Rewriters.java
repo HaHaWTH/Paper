@@ -24,6 +24,7 @@ import io.papermc.generator.rewriter.types.simple.trial.DataComponentTypesRewrit
 import io.papermc.generator.rewriter.types.simple.trial.VillagerProfessionRewriter;
 import io.papermc.generator.utils.Formatting;
 import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
 import io.papermc.typewriter.preset.EnumCloneRewriter;
 import io.papermc.typewriter.preset.model.EnumValue;
 import java.util.Map;
@@ -112,6 +113,7 @@ public final class Rewriters {
             .register("BoatStatus", Boat.Status.class, new EnumCloneRewriter<>(net.minecraft.world.entity.vehicle.Boat.Status.class))
             .register("FoxType", Fox.Type.class, new EnumCloneRewriter<>(net.minecraft.world.entity.animal.Fox.Variant.class))
             .register("SalmonVariant", Salmon.Variant.class, new EnumCloneRewriter<>(net.minecraft.world.entity.animal.Salmon.Variant.class))
+            .register("ItemUseAnimation", ItemUseAnimation.class, new EnumCloneRewriter<>(net.minecraft.world.item.ItemUseAnimation.class))
             .register("ItemRarity", ItemRarity.class, new EnumCloneRewriter<>(Rarity.class) {
                 @Override
                 protected EnumValue.Builder rewriteEnumValue(Rarity rarity) {
