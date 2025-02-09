@@ -1,0 +1,29 @@
+--- a/net/minecraft/server/commands/TagCommand.java
++++ b/net/minecraft/server/commands/TagCommand.java
+@@ -44,7 +_,7 @@
+                                     Commands.argument("name", StringArgumentType.word())
+                                         .suggests(
+                                             (context, builder) -> SharedSuggestionProvider.suggest(
+-                                                getTags(EntityArgument.getEntities(context, "targets")), builder
++                                                getTags(getEntitiesSync(context, "targets")), builder // Paper - Ensure main for console completion
+                                             )
+                                         )
+                                         .executes(
+@@ -144,4 +_,17 @@
+ 
+         return set.size();
+     }
++
++    // Paper start - Ensure main thread for console completion
++    private static Collection<? extends Entity> getEntitiesSync(com.mojang.brigadier.context.CommandContext<CommandSourceStack> ctx, String selector) {
++        return io.papermc.paper.util.MCUtil.ensureMain(() -> {
++            try {
++                return EntityArgument.getEntities(ctx, selector);
++            } catch (CommandSyntaxException e) {
++                com.destroystokyo.paper.util.SneakyThrow.sneaky(e);
++                return java.util.Collections.emptyList();
++            }
++        });
++    }
++    // Paper end - Ensure main thread for console completion
+ }
