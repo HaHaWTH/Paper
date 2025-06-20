@@ -143,3 +143,25 @@
                      entitiesOfClass.forEach(GolemSensor::golemDetected);
                  }
              }
+@@ -908,6 +_,21 @@
+             this.gossips.add(target.getUUID(), GossipType.MAJOR_NEGATIVE, 25);
+         }
+     }
++
++    // Paper start - Fix MC-247647
++    public void onReputationEventFromUUID(ReputationEventType type, java.util.UUID target) {
++        if (type == ReputationEventType.ZOMBIE_VILLAGER_CURED) {
++            this.gossips.add(target, GossipType.MAJOR_POSITIVE, 20);
++            this.gossips.add(target, GossipType.MINOR_POSITIVE, 25);
++        } else if (type == ReputationEventType.TRADE) {
++            this.gossips.add(target, GossipType.TRADING, 2);
++        } else if (type == ReputationEventType.VILLAGER_HURT) {
++            this.gossips.add(target, GossipType.MINOR_NEGATIVE, 25);
++        } else if (type == ReputationEventType.VILLAGER_KILLED) {
++            this.gossips.add(target, GossipType.MAJOR_NEGATIVE, 25);
++        }
++    }
++    // Paper end - Fix MC-247647
+ 
+     @Override
+     public int getVillagerXp() {
